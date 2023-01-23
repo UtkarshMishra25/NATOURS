@@ -34,7 +34,7 @@ exports.login = catchAsync(async (req, res, next) => {
 
     // 1) check if email and password exist
     if (!email || !password) {
-        return next(new AppError('please provide emial and password!', 400));
+        return next(new AppError('please provide email and password!', 400));
     }
     // 2) check if user exists && password is correct
     const user = await User.findOne({ email }.select('+password'));
@@ -70,18 +70,18 @@ exports.protect = catchAsync(async (req, res, next) => {
     const decoded = await promisify (jwt.verify)(token, process.env.JWT_SECRET);
 
     // 3) Check if user still exists
-    const freshUser = await User.findById(decoded.id);
-    if (!freshUser) {
+    const currentUser = await User.findById(decoded.id);
+    if (!currentUser) {
         return next(new AppError('The user belonging to this token dose no longer exist.', 401));
     }
 
     // 4) Check if user changed password after the token was issued
-    if (freshUser.changedPasswordAfter(decoded.iat)) {
+    if (currentUser.changedPasswordAfter(decoded.iat)) {
         return next(new AppError('User recently changed password! Please login again.', 401))
     }
 
     // GRANT ACCESS TO PROTECTED ROUT
-    req.user = freshUser;
+    req.user = currentUser;
     next();
 });
 
