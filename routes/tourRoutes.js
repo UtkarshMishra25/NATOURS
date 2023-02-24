@@ -7,7 +7,7 @@ const router = express.Router();
 
 // router.param('id', tourController.checkID);
 
-// POST /tour/234fad4/reviews
+// POST /tour/234fad4/reviews 
 // GET /tour/234fad4/reviews
 
 
