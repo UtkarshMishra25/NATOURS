@@ -35,7 +35,13 @@ const createSendToken = (user, statusCode, res) => {
 }
 
 exports.signup = catchAsync(async (req, res, next) => {
-    const newUser = await User.create(req.body);
+    const newObj = {
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+        passwordConfirm: req.body.passwordConfirm
+    }
+    const newUser = await User.create(newObj);
         createSendToken(newUser, 201, res);
     });
 
@@ -93,6 +99,9 @@ exports.protect = catchAsync(async (req, res, next) => {
 exports.restrictTo = (...roles) => {
     return (req, res, next) => {
         // roles ['admin', 'lead-guide'], role='user'
+        console.log("Utkarsh", roles);
+        console.log("Utkarsh", req.user);
+
         if (!roles.includes(req.user.role)) {
             return next(
                 new AppError('You do not have permission to perform this action', 403)
