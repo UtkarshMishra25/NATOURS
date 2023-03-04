@@ -33,6 +33,8 @@ router
 // /tours-diatance?distance=233&center=-40,45&unit=m1
 // /tours-distance/233/center/-40,45&unit/m1
 
+router.route('/distances/:latlng/unit/:unit').get(tourController.getDistances);
+
 router
     .route('/')
     .get(tourController.getAllTours)
