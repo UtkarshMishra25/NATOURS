@@ -28,6 +28,12 @@ router
         tourController.getMonthlyPlan);    
 
 router
+    .route('/tours-within/:distance/center/:latlng/unit/:unit') 
+    .get(tourController.getToursWithin);
+// /tours-diatance?distance=233&center=-40,45&unit=m1
+// /tours-distance/233/center/-40,45&unit/m1
+
+router
     .route('/')
     .get(tourController.getAllTours)
     .post(
