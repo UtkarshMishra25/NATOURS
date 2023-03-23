@@ -43,8 +43,6 @@ exports.getMe = (req, res, next) => {
 };
 
 exports.updaetMe = catchAsync(async (req, res, next) => {
-    console.log(req.file);
-    console.log(req.body);
     // 1) Create error if user Posts password data
     if (req.body.password || req.body.passwordConfirm) {
         return next(new AppError('This rout is not for password updates. Please use / updateMyPassword.', 400));
@@ -52,6 +50,7 @@ exports.updaetMe = catchAsync(async (req, res, next) => {
 
     // 2) Filtered out unwanted fields names that are not allowed to be updated
     const filteredBody = filterObj(req.body, 'name', 'email'); 
+    if (req.file) filteredBody.photo = req.file.filename;
 
     // 3) Updatet user document
     const updateUser = await User.findByIdAndUpdate(req.user.id, filteredBody, {
