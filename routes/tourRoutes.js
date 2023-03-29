@@ -45,13 +45,13 @@ router
 
 router
     .route('/:id')
-    .get(tourController.getTours)
+    .get(tourController.getTour)
     .patch(
         authController.protect, 
         authController.restrictTo('admin', 'lead-guide'), 
         tourController.uploadTourImages,
         tourController.resizeTourImages,
-        tourController.UpdatedTour)
+        tourController.updateTour)
     .delete(
         authController.protect, 
         authController.restrictTo('admin', 'lead-guide'), 
