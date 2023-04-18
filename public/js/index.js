@@ -20,8 +20,10 @@ if (mapBox) {
 }
 
 if (loginForm)
+  console.log("@@ DEBUGGING @@ -> added login event listener")
   loginForm.addEventListener('submit', e => {
-    e.preventDefault();
+  console.log("@@ DEBUGGING @@ -> login event triggered")
+  e.preventDefault();
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     login(email, password);

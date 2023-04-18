@@ -1,7 +1,8 @@
 /* eslint-disable */
 import axios from 'axios';
+// import Stripe from 'stripe';
 import { showAlert } from './alerts';
-const stripe = Stripe('pk_test_BUkd0ZXAj6m0q0jMyRgBxNns00PPtgvjjr');
+const stripe = Stripe('pk_test_51MpwRiSC5QhlM4IL0CQ3d64LB3bc0Nghvh7tvMuSYMoIEPpGie3IPgGnx4UMLG6sRydVHUwocvnAKk04Q3uSnsxp00snhoHOc7');
 
 export const bookTour = async tourId => {
   try {
