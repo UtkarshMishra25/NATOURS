@@ -1,14 +1,13 @@
 /* eslint-disable */
 import axios from 'axios';
-// import Stripe from 'stripe';
 import { showAlert } from './alerts';
-const stripe = Stripe('pk_test_51MpwRiSC5QhlM4IL0CQ3d64LB3bc0Nghvh7tvMuSYMoIEPpGie3IPgGnx4UMLG6sRydVHUwocvnAKk04Q3uSnsxp00snhoHOc7');
+const stripe = Stripe('pk_test_BUkd0ZXAj6m0q0jMyRgBxNns00PPtgvjjr');
 
 export const bookTour = async tourId => {
   try {
     // 1) Get checkout session from API
     const session = await axios(
-      `http://127.0.0.1:3000/api/v1/bookings/checkout-session/${tourId}`
+      `http://127.0.0.1:8000/api/v1/bookings/checkout-session/${tourId}`
     );
     console.log(session);
 
